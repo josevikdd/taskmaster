@@ -1,6 +1,7 @@
 package org.example.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Usuario implements Mostrable {
     //Atributos de la clase Usuario
@@ -10,7 +11,7 @@ public class Usuario implements Mostrable {
     private String contrasena;
 
     //Atributos de relación
-    private ArrayList<Tarea> tareas;
+    private List<Tarea> tareas;
 
     //Constructor de la clase Usuario
     public Usuario(int idUsuario, String nombre, String email, String contrasena){
@@ -28,6 +29,10 @@ public class Usuario implements Mostrable {
 
     public String getNombre(){
         return nombre;
+    }
+
+    public List<Tarea> getTareas(){
+        return tareas;
     }
 
     @Override

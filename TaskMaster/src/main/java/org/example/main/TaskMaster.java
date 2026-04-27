@@ -132,6 +132,7 @@ public class TaskMaster {
 
                             Tarea tarea = new Tarea(id, titulo, descripcion, fechaComienzo, fechaFinal, observaciones, estado, categoria, usuario);
                             tareas.add(tarea);
+                            usuario.getTareas().add(tarea);
                         }
                         else {
                             System.out.println("ID de la categoria no válido. Volviendo al menú principal.");
