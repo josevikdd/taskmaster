@@ -157,7 +157,100 @@ public class TaskMaster {
 
     }
 
-    public static void editarTarea(){}
+    public static void editarTarea(){
+        listarTareas();
+        System.out.println("Ingrese el ID de la tarea que quiere modificar: ");
+        int id = sc.nextInt();
+        System.out.println();
+
+        if (buscarTarea(id) != null){
+            Tarea tarea = buscarTarea(id);
+
+            System.out.println("¿Desea modificar el usuario de la tarea (s para confirmar)?");
+            if (sc.nextLine().equals("s")) {
+                mostrarUsuarios();
+                System.out.println("Ingrese el ID del nuevo usuario de la tarea " + id + ".");
+                int idUsuario = sc.nextInt();
+                if (buscarUsuario(idUsuario) != null){
+                    for (int i = 0; i > tarea.getUsuario().getTareas().size(); i++) {
+                        if (tarea.getUsuario().getTareas().get(i).getId() == id){
+                            tarea.getUsuario().getTareas().remove(i);
+                        }
+                    }
+
+                    Usuario usuario = buscarUsuario(idUsuario);
+                    tarea.setUsuario(usuario);
+                    usuario.getTareas().add(tarea);
+                }
+                else {
+                    System.out.println("ID de usuario no válido. No se ha guardado el cambio.");
+                }
+            }
+
+            System.out.println("¿Desea modificar el título de la tarea (s para confirmar)?");
+            if (sc.nextLine().equals("s")) {
+                System.out.println("Ingrese el nuevo título de la tarea " + id + ".");
+                tarea.setTitulo(sc.nextLine());
+            }
+
+            System.out.println("¿Desea modificar la descripción de la tarea (s para confirmar)?");
+            if (sc.nextLine().equals("s")) {
+                System.out.println("Ingrese la nueva descripción de la tarea " + id + ".");
+                tarea.setDescripcion(sc.nextLine());
+            }
+
+            System.out.println("¿Desea modificar la fecha de inicio de la tarea (s para confirmar)?");
+            if (sc.nextLine().equals("s")) {
+                System.out.println("Ingrese la nueva fecha de inicio de la tarea " + id + ".");
+                tarea.setFechaComienzo(new Date(sc.nextLine()));
+            }
+
+            System.out.println("¿Desea modificar la fecha final de la tarea (s para confirmar)?");
+            if (sc.nextLine().equals("s")) {
+                System.out.println("Ingrese la nueva fecha final de la tarea " + id + ".");
+                tarea.setFechaFinal(new Date(sc.nextLine()));
+            }
+
+            System.out.println("¿Desea modificar las observaciones de la tarea (s para confirmar)?");
+            if (sc.nextLine().equals("s")) {
+                System.out.println("Ingrese las nuevas observaciones de la tarea " + id + ".");
+                tarea.setObservaciones(sc.nextLine());
+            }
+
+            System.out.println("¿Desea modificar el estado de la tarea (s para confirmar)?");
+            if (sc.nextLine().equals("s")) {
+                for (Estado estado : estados){
+                    estado.mostrarDatos();
+                }
+                System.out.println("Ingrese el nuevo estado de la tarea " + id + "(1 - 4).");
+                int idEstado = sc.nextInt();
+                if (buscarEstado(idEstado) != null){
+                    tarea.setEstado(buscarEstado(idEstado));
+                }
+                else {
+                    System.out.println("ID de estado no válido. No se ha guardado el cambio.");
+                }
+            }
+
+            System.out.println("¿Desea modificar la categoría de la tarea (s para confirmar)?");
+            if (sc.nextLine().equals("s")) {
+                for (Categoria categoria : categorias){
+                    categoria.mostrarDatos();
+                }
+                System.out.println("Ingrese la nueva categoría de la tarea " + id + "(1 - 2).");
+                int idCategoria = sc.nextInt();
+                if (buscarCategoria(idCategoria) != null){
+                    tarea.setCategoria(buscarCategoria(idCategoria));
+                }
+                else {
+                    System.out.println("ID de categoría no válida. No se ha guardado el cambio.");
+                }
+            }
+        }
+        else {
+            System.out.println("No existe una tarea con el ID " + id + ". Volviendo al menú principal.");
+        }
+    }
 
     public static void eliminarTarea(){}
 

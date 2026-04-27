@@ -37,8 +37,44 @@ public class Tarea implements Mostrable {
 
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
     public int getId(){
         return idTarea;
+    }
+
+    public void setTitulo(String titulo){
+        this.titulo = titulo;
+    }
+
+    public void setDescripcion(String descripcion){
+        this.descripcion = descripcion;
+    }
+
+    public void setFechaComienzo(Date fechaComienzo){
+        this.fechaComienzo = fechaComienzo;
+    }
+
+    public void setFechaFinal(Date fechaFinal){
+        this.fechaFinal = fechaFinal;
+    }
+
+    public void setObservaciones(String observaciones){
+        this.observaciones = observaciones;
+    }
+
+    public void setEstado(Estado estado){
+        this.estado = estado;
+    }
+
+    public void setCategoria(Categoria categoria){
+        this.categoria = categoria;
+    }
+
+    public void setUsuario(Usuario usuario){
+        this.usuario = usuario;
     }
 
     @Override
