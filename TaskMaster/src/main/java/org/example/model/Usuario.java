@@ -22,6 +22,14 @@ public class Usuario implements Mostrable {
         tareas = new ArrayList<>();
     }
 
+    public int getId(){
+        return idUsuario;
+    }
+
+    public String getNombre(){
+        return nombre;
+    }
+
     @Override
     public void mostrarDatos() {
         System.out.println(idUsuario + " -  " + nombre + " - " + email + " - " + contrasena);

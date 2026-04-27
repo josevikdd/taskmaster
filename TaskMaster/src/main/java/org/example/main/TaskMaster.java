@@ -1,10 +1,22 @@
 package org.example.main;
+import org.example.model.Categoria;
+import org.example.model.Estado;
+import org.example.model.Tarea;
+import org.example.model.Usuario;
+import org.example.utils.DatosEstaticos;
+
 import java.util.*;
 
 public class TaskMaster {
 
     private static final Scanner sc = new Scanner(System.in);
+    private static final List<Categoria> categorias = new ArrayList<>();
+    private static final List<Estado> estados = new ArrayList<>();
+    private static final List<Tarea> tareas = new ArrayList<>();
+    private static final List<Usuario> usuarios = new ArrayList<>();
 
+    //Cargamos los datos estáticos para Categoria y Estado.
+    private static final DatosEstaticos de = new DatosEstaticos();
 
     static void main(String[] args) {
         int opcion;
@@ -44,10 +56,28 @@ public class TaskMaster {
     }
 
     public static void altaUsuario(){
+        System.out.println("Ingrese el ID del usuario: ");
+        int id = sc.nextInt();
+        sc.nextLine();
+        System.out.println("Ingrese el nombre del usuario: ");
+        String nombre = sc.nextLine();
+        System.out.println("Ingrese el email del usuario: ");
+        String email = sc.nextLine();
+        System.out.println("Ingrese el contraseña del usuario: ");
+        String contrasena = sc.nextLine();
 
+        Usuario usuario = new Usuario(id, nombre, email, contrasena);
+        usuarios.add(usuario);
+
+        System.out.println("Usuario " + usuario.getId() + " - " + usuario.getNombre() + " dado de alta correctamente.");
     }
 
-    public static void mostrarUsuarios(){}
+    public static void mostrarUsuarios(){
+        System.out.println("===LISTA DE USUARIOS===");
+        for (Usuario usuario : usuarios){
+            usuario.mostrarDatos();
+        }
+    }
 
     public static void crearTarea(){}
 
