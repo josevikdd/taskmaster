@@ -37,6 +37,10 @@ public class Tarea implements Mostrable {
 
     }
 
+    public int getId(){
+        return idTarea;
+    }
+
     @Override
     public void mostrarDatos() {
         System.out.println(idTarea + " - " + titulo + " - " + descripcion +  " - " + fechaComienzo +  " - " + fechaFinal + " - " + observaciones

@@ -60,19 +60,24 @@ public class TaskMaster {
         int id = sc.nextInt();
         sc.nextLine();
 
-        System.out.println("Ingrese el nombre del usuario: ");
-        String nombre = sc.nextLine();
+        if (buscarUsuario(id) == null){
+            System.out.println("Ingrese el nombre del usuario: ");
+            String nombre = sc.nextLine();
 
-        System.out.println("Ingrese el email del usuario: ");
-        String email = sc.nextLine();
+            System.out.println("Ingrese el email del usuario: ");
+            String email = sc.nextLine();
 
-        System.out.println("Ingrese el contraseña del usuario: ");
-        String contrasena = sc.nextLine();
+            System.out.println("Ingrese el contraseña del usuario: ");
+            String contrasena = sc.nextLine();
 
-        Usuario usuario = new Usuario(id, nombre, email, contrasena);
-        usuarios.add(usuario);
+            Usuario usuario = new Usuario(id, nombre, email, contrasena);
+            usuarios.add(usuario);
 
-        System.out.println("Usuario " + usuario.getId() + " - " + usuario.getNombre() + " dado de alta correctamente.");
+            System.out.println("Usuario " + usuario.getId() + " - " + usuario.getNombre() + " dado de alta correctamente.");
+        }
+        else {
+            System.out.println("Ya existe un usuario con el ID " + id + ". Volviendo al menú principal.");
+        }
     }
 
     public static void mostrarUsuarios(){
@@ -93,47 +98,51 @@ public class TaskMaster {
                 System.out.println("Ingrese el ID del tarea: ");
                 int id = sc.nextInt();
                 sc.nextLine();
+                if(buscarTarea(id) == null){
+                    System.out.println("Ingrese el nombre del tarea: ");
+                    String titulo = sc.nextLine();
 
-                System.out.println("Ingrese el nombre del tarea: ");
-                String titulo = sc.nextLine();
+                    System.out.println("Ingrese una descripción para la tarea: ");
+                    String descripcion = sc.nextLine();
 
-                System.out.println("Ingrese una descripción para la tarea: ");
-                String descripcion = sc.nextLine();
+                    System.out.println("Ingrese la fecha de comienzo de la tarea (dd/mm/aaaa): ");
+                    Date fechaComienzo = new Date(sc.nextLine());
 
-                System.out.println("Ingrese la fecha de comienzo de la tarea (dd/mm/aaaa): ");
-                Date fechaComienzo = new Date(sc.nextLine());
+                    System.out.println("Ingrese la fecha de finalización de la tarea (dd/mm/aaaa): ");
+                    Date fechaFinal = new Date(sc.nextLine());
 
-                System.out.println("Ingrese la fecha de finalización de la tarea (dd/mm/aaaa): ");
-                Date fechaFinal = new Date(sc.nextLine());
+                    System.out.println("Añada observaciones a la tarea: ");
+                    String observaciones = sc.nextLine();
 
-                System.out.println("Añada observaciones a la tarea: ");
-                String observaciones = sc.nextLine();
-
-                System.out.println("Ingrese el estado actual de la tarea (1 - 4):");
-                for (Estado estado : estados){
-                    estado.mostrarDatos();
-                }
-                int idEstado = sc.nextInt();
-                if (buscarEstado(idEstado) != null){
-                    Estado estado = buscarEstado(idEstado);
-
-                    System.out.println("Ingrese la categoría de la tarea (1 - 2): ");
-                    for (Categoria categoria : categorias){
-                        categoria.mostrarDatos();
+                    System.out.println("Ingrese el estado actual de la tarea (1 - 4):");
+                    for (Estado estado : estados){
+                        estado.mostrarDatos();
                     }
-                    int idCategoria = sc.nextInt();
-                    if (buscarCategoria(idCategoria) != null){
-                        Categoria categoria = buscarCategoria(idCategoria);
+                    int idEstado = sc.nextInt();
+                    if (buscarEstado(idEstado) != null){
+                        Estado estado = buscarEstado(idEstado);
 
-                        Tarea tarea = new Tarea(id, titulo, descripcion, fechaComienzo, fechaFinal, observaciones, estado, categoria, usuario);
-                        tareas.add(tarea);
+                        System.out.println("Ingrese la categoría de la tarea (1 - 2): ");
+                        for (Categoria categoria : categorias){
+                            categoria.mostrarDatos();
+                        }
+                        int idCategoria = sc.nextInt();
+                        if (buscarCategoria(idCategoria) != null){
+                            Categoria categoria = buscarCategoria(idCategoria);
+
+                            Tarea tarea = new Tarea(id, titulo, descripcion, fechaComienzo, fechaFinal, observaciones, estado, categoria, usuario);
+                            tareas.add(tarea);
+                        }
+                        else {
+                            System.out.println("ID de la categoria no válido. Volviendo al menú principal.");
+                        }
                     }
                     else {
-                        System.out.println("ID de la categoria no válido. Volviendo al menú principal.");
+                        System.out.println("ID del estado no válido. Volviendo al menú principal.");
                     }
                 }
                 else {
-                    System.out.println("ID del estado no válido. Volviendo al menú principal.");
+                    System.out.println("Ya existe una tarea con el ID " + id + ". Volviendo al menú principal.");
                 }
             }
             else {
@@ -186,6 +195,15 @@ public class TaskMaster {
         for (Categoria categoria : categorias){
             if (categoria.getId() == id){
                 return categoria;
+            }
+        }
+        return null;
+    }
+
+    public static Tarea buscarTarea(int id){
+        for (Tarea tarea : tareas){
+            if (tarea.getId() == id){
+                return tarea;
             }
         }
         return null;
