@@ -13,19 +13,20 @@ public class Tarea implements Mostrable {
     private String observaciones;
 
     //Atributos de relación
-    private int idEstado;
-    private int idCategoria;
-    private ArrayList<Usuario> usuarios;
+    private Estado estado;
+    private Categoria categoria;
+    private Usuario usuario;
 
-    public Tarea(int idTarea, String titulo, String descripcion, Date fechaComienzo, Date fechaFinal, int idEstado, int idCategoria) {
+    public Tarea(int idTarea, String titulo, String descripcion, Date fechaComienzo, Date fechaFinal, String observaciones, Estado estado, Categoria categoria, Usuario usuario) {
         this.idTarea = idTarea;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.fechaComienzo = fechaComienzo;
         this.fechaFinal = fechaFinal;
-        this.idEstado = idEstado;
-        this.idCategoria = idCategoria;
-        usuarios = new ArrayList<>();
+        this.observaciones = observaciones;
+        this.estado = estado;
+        this.categoria = categoria;
+        this.usuario = usuario;
     }
 
     public void editarTarea(){
@@ -39,7 +40,7 @@ public class Tarea implements Mostrable {
     @Override
     public void mostrarDatos() {
         System.out.println(idTarea + " - " + titulo + " - " + descripcion +  " - " + fechaComienzo +  " - " + fechaFinal + " - "
-                + idEstado + " - " + idCategoria);
+                + estado.getNombre() + " - " + categoria.getNombre());
     }
 
 }
