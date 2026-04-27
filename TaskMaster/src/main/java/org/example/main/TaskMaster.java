@@ -151,7 +151,12 @@ public class TaskMaster {
 
     public static void eliminarTarea(){}
 
-    public static void listarTareas(){}
+    public static void listarTareas(){
+        System.out.println("===LISTA DE TAREAS===");
+        for (Tarea tarea : tareas){
+            tarea.mostrarDatos();
+        }
+    }
 
     public static void completarTarea(){}
 
