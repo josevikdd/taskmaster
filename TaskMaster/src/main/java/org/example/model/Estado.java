@@ -13,6 +13,14 @@ public class Estado implements Mostrable{
         this.descripcion = descripcion;
     }
 
+    public int getId() {
+        return idEstado;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
     @Override
     public void mostrarDatos() {
         System.out.println(idEstado + " -  " + nombre + " - " + descripcion);

@@ -13,6 +13,14 @@ public class Categoria implements Mostrable {
         this.descripcion = descripcion;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public int getId() {
+        return idCategoria;
+    }
+
     @Override
     public void mostrarDatos() {
         System.out.println(idCategoria + " -  " + nombre + " - " + descripcion);
