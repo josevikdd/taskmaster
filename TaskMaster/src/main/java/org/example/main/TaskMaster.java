@@ -252,7 +252,11 @@ public class TaskMaster {
         }
     }
 
-    public static void eliminarTarea(){}
+    public static void eliminarTarea(){
+        listarTareas();
+        System.out.println("Ingrese el ID de la tarea que desea eliminar: ");
+        int id = sc.nextInt();
+    }
 
     public static void listarTareas(){
         System.out.println("===LISTA DE TAREAS===");
@@ -278,7 +282,21 @@ public class TaskMaster {
 
     public static void listarTareasCategoria(){}
 
-    public static void listarTareasUsuario(){}
+    public static void listarTareasUsuario(){
+        mostrarUsuarios();
+        System.out.println("Ingrese el ID del usuario del que quiere listar las tareas: ");
+        int id = sc.nextInt();
+
+        if (buscarUsuario(id) != null){
+            System.out.println("===TAREAS DEL USUARIO " + id + "===");
+            for (Tarea tarea : buscarUsuario(id).getTareas()){
+                tarea.mostrarDatos();
+            }
+        }
+        else {
+            System.out.println("El ID de usuario ingresado no es válido. Volviendo al menú principal.");
+        }
+    }
 
     public static Usuario buscarUsuario(int id){
         for (Usuario usuario : usuarios){
