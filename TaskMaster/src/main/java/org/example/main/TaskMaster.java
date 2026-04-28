@@ -74,18 +74,26 @@ public class TaskMaster {
             usuarios.add(usuario);
 
             System.out.println("Usuario " + usuario.getId() + " - " + usuario.getNombre() + " dado de alta correctamente.");
+            System.out.println();
         }
         else {
             System.out.println("Ya existe un usuario con el ID " + id + ". Volviendo al menú principal.");
+            System.out.println();
         }
     }
 
     public static void mostrarUsuarios(){
-        System.out.println("===LISTA DE USUARIOS===");
-        for (Usuario usuario : usuarios){
-            usuario.mostrarDatos();
+        if (!usuarios.isEmpty()){
+            System.out.println("===LISTA DE USUARIOS===");
+            for (Usuario usuario : usuarios){
+                usuario.mostrarDatos();
+            }
+            System.out.println();
         }
-        System.out.println();
+        else {
+            System.out.println("La lista de usuarios está vacía. Volviendo al menú principal.");
+            System.out.println();
+        }
     }
 
     public static void crearTarea(){
@@ -139,134 +147,154 @@ public class TaskMaster {
                         }
                         else {
                             System.out.println("ID de la categoria no válido. Volviendo al menú principal.");
+                            System.out.println();
                         }
                     }
                     else {
                         System.out.println("ID del estado no válido. Volviendo al menú principal.");
+                        System.out.println();
                     }
                 }
                 else {
                     System.out.println("Ya existe una tarea con el ID " + id + ". Volviendo al menú principal.");
+                    System.out.println();
                 }
             }
             else {
                 System.out.println("ID no válido. Volviendo al menú principal. ");
+                System.out.println();
             }
         }
         else {
             System.out.println("La lista de usuarios está vacía. Cree un usuario al que asignar una tarea antes de crear esta.");
+            System.out.println();
         }
-
-
     }
 
     public static void editarTarea(){
-        listarTareas();
-        System.out.println("Ingrese el ID de la tarea que quiere modificar: ");
-        int id = sc.nextInt();
-        sc.nextLine();
+        if (!tareas.isEmpty()){
+            listarTareas();
+            System.out.println("Ingrese el ID de la tarea que quiere modificar: ");
+            int id = sc.nextInt();
+            sc.nextLine();
 
-        if (buscarTarea(id) != null){
-            Tarea tarea = buscarTarea(id);
+            if (buscarTarea(id) != null){
+                Tarea tarea = buscarTarea(id);
 
-            System.out.println("¿Desea modificar el usuario de la tarea (s para confirmar)?");
-            if (sc.nextLine().equals("s")) {
-                mostrarUsuarios();
-                System.out.println("Ingrese el ID del nuevo usuario de la tarea " + id + ".");
-                int idUsuario = sc.nextInt();
-                sc.nextLine();
-                if (buscarUsuario(idUsuario) != null){
-                    tarea.getUsuario().getTareas().remove(tarea);
-                    Usuario usuario = buscarUsuario(idUsuario);
-                    tarea.setUsuario(usuario);
-                    usuario.getTareas().add(tarea);
+                System.out.println("¿Desea modificar el usuario de la tarea (s para confirmar)?");
+                if (sc.nextLine().equals("s")) {
+                    mostrarUsuarios();
+                    System.out.println("Ingrese el ID del nuevo usuario de la tarea " + id + ".");
+                    int idUsuario = sc.nextInt();
+                    sc.nextLine();
+                    if (buscarUsuario(idUsuario) != null){
+                        tarea.getUsuario().getTareas().remove(tarea);
+                        Usuario usuario = buscarUsuario(idUsuario);
+                        tarea.setUsuario(usuario);
+                        usuario.getTareas().add(tarea);
+                    }
+                    else {
+                        System.out.println("ID de usuario no válido. No se ha guardado el cambio.");
+                    }
                 }
-                else {
-                    System.out.println("ID de usuario no válido. No se ha guardado el cambio.");
+
+                System.out.println("¿Desea modificar el título de la tarea (s para confirmar)?");
+                if (sc.nextLine().equals("s")) {
+                    System.out.println("Ingrese el nuevo título de la tarea " + id + ".");
+                    tarea.setTitulo(sc.nextLine());
                 }
-            }
 
-            System.out.println("¿Desea modificar el título de la tarea (s para confirmar)?");
-            if (sc.nextLine().equals("s")) {
-                System.out.println("Ingrese el nuevo título de la tarea " + id + ".");
-                tarea.setTitulo(sc.nextLine());
-            }
-
-            System.out.println("¿Desea modificar la descripción de la tarea (s para confirmar)?");
-            if (sc.nextLine().equals("s")) {
-                System.out.println("Ingrese la nueva descripción de la tarea " + id + ".");
-                tarea.setDescripcion(sc.nextLine());
-            }
-
-            System.out.println("¿Desea modificar la fecha de inicio de la tarea (s para confirmar)?");
-            if (sc.nextLine().equals("s")) {
-                System.out.println("Ingrese la nueva fecha de inicio de la tarea " + id + ".");
-                tarea.setFechaComienzo(new Date(sc.nextLine()));
-            }
-
-            System.out.println("¿Desea modificar la fecha final de la tarea (s para confirmar)?");
-            if (sc.nextLine().equals("s")) {
-                System.out.println("Ingrese la nueva fecha final de la tarea " + id + ".");
-                tarea.setFechaFinal(new Date(sc.nextLine()));
-            }
-
-            System.out.println("¿Desea modificar las observaciones de la tarea (s para confirmar)?");
-            if (sc.nextLine().equals("s")) {
-                System.out.println("Ingrese las nuevas observaciones de la tarea " + id + ".");
-                tarea.setObservaciones(sc.nextLine());
-            }
-
-            System.out.println("¿Desea modificar el estado de la tarea (s para confirmar)?");
-            if (sc.nextLine().equals("s")) {
-                for (Estado estado : estados){
-                    estado.mostrarDatos();
+                System.out.println("¿Desea modificar la descripción de la tarea (s para confirmar)?");
+                if (sc.nextLine().equals("s")) {
+                    System.out.println("Ingrese la nueva descripción de la tarea " + id + ".");
+                    tarea.setDescripcion(sc.nextLine());
                 }
-                System.out.println("Ingrese el nuevo estado de la tarea " + id + "(1 - 4).");
-                int idEstado = sc.nextInt();
-                if (buscarEstado(idEstado) != null){
-                    tarea.setEstado(buscarEstado(idEstado));
-                }
-                else {
-                    System.out.println("ID de estado no válido. No se ha guardado el cambio.");
-                }
-            }
 
-            System.out.println("¿Desea modificar la categoría de la tarea (s para confirmar)?");
-            if (sc.nextLine().equals("s")) {
-                for (Categoria categoria : categorias){
-                    categoria.mostrarDatos();
+                System.out.println("¿Desea modificar la fecha de inicio de la tarea (s para confirmar)?");
+                if (sc.nextLine().equals("s")) {
+                    System.out.println("Ingrese la nueva fecha de inicio de la tarea " + id + ".");
+                    tarea.setFechaComienzo(new Date(sc.nextLine()));
                 }
-                System.out.println("Ingrese la nueva categoría de la tarea " + id + "(1 - 2).");
-                int idCategoria = sc.nextInt();
-                if (buscarCategoria(idCategoria) != null){
-                    tarea.setCategoria(buscarCategoria(idCategoria));
-                }
-                else {
-                    System.out.println("ID de categoría no válida. No se ha guardado el cambio.");
-                }
-            }
 
-            System.out.println("Tarea con ID " + tarea.getId() + " correctamente actualizada.");
+                System.out.println("¿Desea modificar la fecha final de la tarea (s para confirmar)?");
+                if (sc.nextLine().equals("s")) {
+                    System.out.println("Ingrese la nueva fecha final de la tarea " + id + ".");
+                    tarea.setFechaFinal(new Date(sc.nextLine()));
+                }
+
+                System.out.println("¿Desea modificar las observaciones de la tarea (s para confirmar)?");
+                if (sc.nextLine().equals("s")) {
+                    System.out.println("Ingrese las nuevas observaciones de la tarea " + id + ".");
+                    tarea.setObservaciones(sc.nextLine());
+                }
+
+                System.out.println("¿Desea modificar el estado de la tarea (s para confirmar)?");
+                if (sc.nextLine().equals("s")) {
+                    for (Estado estado : estados){
+                        estado.mostrarDatos();
+                    }
+                    System.out.println("Ingrese el nuevo estado de la tarea " + id + "(1 - 4).");
+                    int idEstado = sc.nextInt();
+                    if (buscarEstado(idEstado) != null){
+                        tarea.setEstado(buscarEstado(idEstado));
+                    }
+                    else {
+                        System.out.println("ID de estado no válido. No se ha guardado el cambio.");
+                    }
+                }
+
+                System.out.println("¿Desea modificar la categoría de la tarea (s para confirmar)?");
+                if (sc.nextLine().equals("s")) {
+                    for (Categoria categoria : categorias){
+                        categoria.mostrarDatos();
+                    }
+                    System.out.println("Ingrese la nueva categoría de la tarea " + id + "(1 - 2).");
+                    int idCategoria = sc.nextInt();
+                    if (buscarCategoria(idCategoria) != null){
+                        tarea.setCategoria(buscarCategoria(idCategoria));
+                    }
+                    else {
+                        System.out.println("ID de categoría no válida. No se ha guardado el cambio.");
+                    }
+                }
+
+                System.out.println("Tarea con ID " + tarea.getId() + " correctamente actualizada.");
+                System.out.println();
+            }
+            else {
+                System.out.println("No existe una tarea con el ID " + id + ". Volviendo al menú principal.");
+                System.out.println();
+            }
         }
         else {
-            System.out.println("No existe una tarea con el ID " + id + ". Volviendo al menú principal.");
+            System.out.println("La lista de tareas esta vacía. Volviendo al menú principal.");
+            System.out.println();
         }
+
     }
 
     public static void eliminarTarea(){
-        listarTareas();
-        System.out.println("Ingrese el ID de la tarea que desea eliminar: ");
-        int id = sc.nextInt();
+        if (!tareas.isEmpty()){
+            listarTareas();
+            System.out.println("Ingrese el ID de la tarea que desea eliminar: ");
+            int id = sc.nextInt();
 
-        if (buscarTarea(id) != null){
-            Tarea tarea = buscarTarea(id);
-            tarea.getUsuario().getTareas().remove(tarea);
-            tareas.remove(tarea);
+            if (buscarTarea(id) != null){
+                Tarea tarea = buscarTarea(id);
+                tarea.getUsuario().getTareas().remove(tarea);
+                tareas.remove(tarea);
 
-            System.out.println("Tarea correctamente eliminada.");
+                System.out.println("Tarea correctamente eliminada.");
+                System.out.println();
+            }
+            else {
+                System.out.println("El ID introducido no coincide con el ID de ninguna tarea actual. Volviendo al menú principal.");
+                System.out.println();
+            }
         }
         else {
-            System.out.println("El ID introducido no coincide con el ID de ninguna tarea actual. Volviendo al menú principal.");
+            System.out.println("La lista de tareas está vacía. Volviendo al menú principal.");
+            System.out.println();
         }
     }
 
@@ -275,55 +303,89 @@ public class TaskMaster {
         for (Tarea tarea : tareas){
             tarea.mostrarDatos();
         }
+        System.out.println();
     }
 
     public static void completarTarea(){
-        listarTareas();
-        System.out.println("Introduzca el ID de la tarea que desea completar.");
-        int id = sc.nextInt();
-        sc.nextLine();
-        if (buscarTarea(id) != null){
-            Tarea tarea = buscarTarea(id);
-            tarea.setEstado(buscarEstado(3));
-            System.out.println("Tarea " + id + " - " + tarea.getTitulo() + " marcada correctamente como completada.");
+        if (!tareas.isEmpty()){
+            listarTareas();
+            System.out.println("Introduzca el ID de la tarea que desea completar.");
+            int id = sc.nextInt();
+            sc.nextLine();
+            if (buscarTarea(id) != null){
+                Tarea tarea = buscarTarea(id);
+                tarea.setEstado(buscarEstado(3));
+                System.out.println("Tarea " + id + " - " + tarea.getTitulo() + " marcada correctamente como completada.");
+                System.out.println();
+            }
+            else {
+                System.out.println("No existe ninguna tarea con el ID " + id + ". Volviendo al menú principal.");
+                System.out.println();
+            }
         }
         else {
-            System.out.println("No existe ninguna tarea con el ID " + id + ". Volviendo al menú principal.");
+            System.out.println("La lista de tareas está vacía. Volviendo al menú principal.");
+            System.out.println();
         }
     }
 
     public static void listarTareasCategoria(){
-        for (Categoria categoria : categorias){
-            categoria.mostrarDatos();
-        }
-        System.out.println("Ingrese el ID de la categoría de la cual quiere listar las tareas: ");
-        int id = sc.nextInt();
-        sc.nextLine();
-        if (buscarCategoria(id) != null){
-            Categoria categoria = buscarCategoria(id);
-            System.out.println("===TAREAS DE LA CATEGORÍA " + id + " - " + categoria.getNombre() + "===");
-            for (Tarea tarea : tareas){
-                if (tarea.getCategoria() == categoria){
-                    tarea.mostrarDatos();
+        if (!tareas.isEmpty()){
+            for (Categoria categoria : categorias){
+                categoria.mostrarDatos();
+            }
+            System.out.println("Ingrese el ID de la categoría de la cual quiere listar las tareas: ");
+            int id = sc.nextInt();
+            sc.nextLine();
+            if (buscarCategoria(id) != null){
+                Categoria categoria = buscarCategoria(id);
+                System.out.println("===TAREAS DE LA CATEGORÍA " + id + " - " + categoria.getNombre() + "===");
+                boolean hayDatos = false;
+                for (Tarea tarea : tareas){
+                    if (tarea.getCategoria() == categoria){
+                        hayDatos = true;
+                        tarea.mostrarDatos();
+                    }
+                }
+                if (!hayDatos) {
+                    System.out.println("No existen tareas dentro de la categoría seleccionada.");
+                    System.out.println();
                 }
             }
+        }
+        else {
+            System.out.println("La lista de tareas está vacía. Volviendo al menú principal.");
+            System.out.println();
         }
     }
 
     public static void listarTareasUsuario(){
-        mostrarUsuarios();
-        System.out.println("Ingrese el ID del usuario del que quiere listar las tareas: ");
-        int id = sc.nextInt();
+        if (!usuarios.isEmpty()){
+            mostrarUsuarios();
+            System.out.println("Ingrese el ID del usuario del que quiere listar las tareas: ");
+            int id = sc.nextInt();
 
-        if (buscarUsuario(id) != null){
-            Usuario usuario = buscarUsuario(id);
-            System.out.println("===TAREAS DEL USUARIO " + id + " - " + usuario.getNombre() + "===");
-            for (Tarea tarea : buscarUsuario(id).getTareas()){
-                tarea.mostrarDatos();
+            if (buscarUsuario(id) != null){
+                Usuario usuario = buscarUsuario(id);
+                System.out.println("===TAREAS DEL USUARIO " + id + " - " + usuario.getNombre() + "===");
+                if (!usuario.getTareas().isEmpty()){
+                    for (Tarea tarea : usuario.getTareas()){
+                        tarea.mostrarDatos();
+                    }
+                }
+                else {
+                    System.out.println("El usuario seleccionado no tiene tareas asignadas. Volviendo al menú principal.");
+                    System.out.println();
+                }
+            }
+            else {
+                System.out.println("El ID de usuario ingresado no es válido. Volviendo al menú principal.");
+                System.out.println();
             }
         }
         else {
-            System.out.println("El ID de usuario ingresado no es válido. Volviendo al menú principal.");
+            System.out.println("La lista de usuarios está vacía. Volviendo al menú principal.");
+            System.out.println();
         }
     }
 
