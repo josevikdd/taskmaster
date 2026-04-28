@@ -341,5 +341,13 @@ public class TaskMaster {
     public static List getEstados(){
         return estados;
     }
+
+    public static List getUsuarios(){
+        return usuarios;
+    }
+
+    public static List getTareas(){
+        return tareas;
+    }
 }
 
