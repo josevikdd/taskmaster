@@ -161,7 +161,7 @@ public class TaskMaster {
         listarTareas();
         System.out.println("Ingrese el ID de la tarea que quiere modificar: ");
         int id = sc.nextInt();
-        System.out.println();
+        sc.nextLine();
 
         if (buscarTarea(id) != null){
             Tarea tarea = buscarTarea(id);
@@ -261,7 +261,20 @@ public class TaskMaster {
         }
     }
 
-    public static void completarTarea(){}
+    public static void completarTarea(){
+        listarTareas();
+        System.out.println("Introduzca el ID de la tarea que desea completar.");
+        int id = sc.nextInt();
+        sc.nextLine();
+        if (buscarTarea(id) != null){
+            Tarea tarea = buscarTarea(id);
+            tarea.setEstado(buscarEstado(3));
+            System.out.println("Tarea " + id + " marcada correctamente como completada.");
+        }
+        else {
+            System.out.println("No existe ninguna tarea con el ID " + id + ". Volviendo al menú principal.");
+        }
+    }
 
     public static void listarTareasCategoria(){}
 
