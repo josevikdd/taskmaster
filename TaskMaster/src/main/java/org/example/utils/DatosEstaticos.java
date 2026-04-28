@@ -29,10 +29,23 @@ public class DatosEstaticos {
         //Creamos un usuario para ayudarnos con las pruebas del programa.
         Usuario u1 = new Usuario(1, "José Vicente Sánchez Vargues", "josevi@mail.com", "contraseñasegura");
         TaskMaster.getUsuarios().add(u1);
+        Usuario u2 = new Usuario(2, "Pedro", "pedro@mail.com", "contraseñasegura123");
+        TaskMaster.getUsuarios().add(u2);
 
         //Creamos una tarea para ayudarnos con las pruebas del programa.
-        Tarea t1 = new Tarea(1, "Q13 - Proyecto Intermodular", "Esta actividad.", new Date("20/04/2026"), new Date("01/05/2026"), "",
-                TaskMaster.buscarEstado(2), TaskMaster.buscarCategoria(1), u1);
+        Tarea t1 = new Tarea(1, "Q13 - Proyecto Intermodular", "Esta actividad.", new Date("20/04/2026"), new Date("01/05/2026"),
+                "", TaskMaster.buscarEstado(2), TaskMaster.buscarCategoria(1), u1);
         TaskMaster.getTareas().add(t1);
+        u1.getTareas().add(t1);
+
+        Tarea t2 = new Tarea(2, "Ropa", "Plegar la ropa", new Date("28/04/2026"), new Date("28/04/2026"), "",
+                TaskMaster.buscarEstado(1), TaskMaster.buscarCategoria(2), u1);
+        TaskMaster.getTareas().add(t2);
+        u1.getTareas().add(t2);
+
+        Tarea t3 = new Tarea(3, "Comprar", "Ir al supermercado a comprar", new Date("28/04/2026"), new Date("28/04/2026"), "La lista de la compra está en la cocina",
+                TaskMaster.buscarEstado(1), TaskMaster.buscarCategoria(2), u2);
+        TaskMaster.getTareas().add(t3);
+        u2.getTareas().add(t3);
     }
 }

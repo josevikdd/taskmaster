@@ -256,6 +256,15 @@ public class TaskMaster {
         listarTareas();
         System.out.println("Ingrese el ID de la tarea que desea eliminar: ");
         int id = sc.nextInt();
+
+        if (buscarTarea(id) != null){
+            Tarea tarea = buscarTarea(id);
+            tarea.getUsuario().getTareas().remove(tarea);
+            tareas.remove(tarea);
+        }
+        else {
+            System.out.println("El ID introducido no coincide con el ID de ninguna tarea actual. Volviendo al menú principal.");
+        }
     }
 
     public static void listarTareas(){
