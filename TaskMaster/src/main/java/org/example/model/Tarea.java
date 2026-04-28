@@ -45,6 +45,10 @@ public class Tarea implements Mostrable {
         return idTarea;
     }
 
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
     public void setTitulo(String titulo){
         this.titulo = titulo;
     }

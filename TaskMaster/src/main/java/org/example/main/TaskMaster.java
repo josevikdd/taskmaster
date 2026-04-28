@@ -285,7 +285,23 @@ public class TaskMaster {
         }
     }
 
-    public static void listarTareasCategoria(){}
+    public static void listarTareasCategoria(){
+        for (Categoria categoria : categorias){
+            categoria.mostrarDatos();
+        }
+        System.out.println("Ingrese el ID de la categoría de la cual quiere listar las tareas: ");
+        int id = sc.nextInt();
+        sc.nextLine();
+        if (buscarCategoria(id) != null){
+            Categoria categoria = buscarCategoria(id);
+            System.out.println("===TAREAS DE LA CATEGORÍA " + id + "===");
+            for (Tarea tarea : tareas){
+                if (tarea.getCategoria() == categoria){
+                    tarea.mostrarDatos();
+                }
+            }
+        }
+    }
 
     public static void listarTareasUsuario(){
         mostrarUsuarios();
