@@ -6,6 +6,7 @@ import org.example.model.Estado;
 import org.example.model.Tarea;
 import org.example.model.Usuario;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class DatosEstaticos {
@@ -33,18 +34,18 @@ public class DatosEstaticos {
         TaskMaster.getUsuarios().add(u2);
 
         //Creamos una tarea para ayudarnos con las pruebas del programa.
-        Tarea t1 = new Tarea(1, "Q13 - Proyecto Intermodular", "Esta actividad.", new Date("20/04/2026"), new Date("01/05/2026"),
-                "", TaskMaster.buscarEstado(2), TaskMaster.buscarCategoria(1), u1);
+        Tarea t1 = new Tarea(1, "Q13 - Proyecto Intermodular", "Esta actividad.", LocalDate.of(2026, 04, 20),
+                LocalDate.of(2026, 05, 01), "", TaskMaster.buscarEstado(2), TaskMaster.buscarCategoria(1), u1);
         TaskMaster.getTareas().add(t1);
         u1.getTareas().add(t1);
 
-        Tarea t2 = new Tarea(2, "Ropa", "Plegar la ropa", new Date("28/04/2026"), new Date("28/04/2026"), "",
-                TaskMaster.buscarEstado(1), TaskMaster.buscarCategoria(2), u1);
+        Tarea t2 = new Tarea(2, "Ropa", "Plegar la ropa", LocalDate.of(2026, 04, 28),
+                LocalDate.of(2026, 04, 28), "", TaskMaster.buscarEstado(1), TaskMaster.buscarCategoria(2), u1);
         TaskMaster.getTareas().add(t2);
         u1.getTareas().add(t2);
 
-        Tarea t3 = new Tarea(3, "Comprar", "Ir al supermercado a comprar", new Date("28/04/2026"), new Date("28/04/2026"), "La lista de la compra está en la cocina",
-                TaskMaster.buscarEstado(1), TaskMaster.buscarCategoria(2), u2);
+        Tarea t3 = new Tarea(3, "Comprar", "Ir al supermercado a comprar", LocalDate.of(2026, 04, 28),
+                LocalDate.of(2026, 04, 28), "La lista de la compra está en la cocina", TaskMaster.buscarEstado(1), TaskMaster.buscarCategoria(2), u2);
         TaskMaster.getTareas().add(t3);
         u2.getTareas().add(t3);
     }

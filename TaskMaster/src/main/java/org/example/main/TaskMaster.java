@@ -4,7 +4,9 @@ import org.example.model.Estado;
 import org.example.model.Tarea;
 import org.example.model.Usuario;
 import org.example.utils.DatosEstaticos;
+import org.example.utils.InputUtils;
 
+import java.time.LocalDate;
 import java.util.*;
 
 public class TaskMaster {
@@ -114,11 +116,9 @@ public class TaskMaster {
                     System.out.println("Ingrese una descripción para la tarea: ");
                     String descripcion = sc.nextLine();
 
-                    System.out.println("Ingrese la fecha de comienzo de la tarea (dd/mm/aaaa): ");
-                    Date fechaComienzo = new Date(sc.nextLine());
+                    LocalDate fechaComienzo = InputUtils.readLocalDate(sc, "Ingrese la fecha de comienzo de la tarea (dd/mm/aaaa): ");
 
-                    System.out.println("Ingrese la fecha de finalización de la tarea (dd/mm/aaaa): ");
-                    Date fechaFinal = new Date(sc.nextLine());
+                    LocalDate fechaFinal = InputUtils.readLocalDate(sc, "Ingrese la fecha de finalización de la tarea (dd/mm/aaaa): ");
 
                     System.out.println("Añada observaciones a la tarea: ");
                     String observaciones = sc.nextLine();
@@ -212,14 +212,14 @@ public class TaskMaster {
 
                 System.out.println("¿Desea modificar la fecha de inicio de la tarea (s para confirmar)?");
                 if (sc.nextLine().equals("s")) {
-                    System.out.println("Ingrese la nueva fecha de inicio de la tarea " + id + ".");
-                    tarea.setFechaComienzo(new Date(sc.nextLine()));
+                    tarea.setFechaComienzo(InputUtils.readLocalDate(sc, "Ingrese la nueva fecha de inicio de la tarea " + id + " (dd/mm/aaaa): "));
+                    System.out.println();
                 }
 
                 System.out.println("¿Desea modificar la fecha final de la tarea (s para confirmar)?");
                 if (sc.nextLine().equals("s")) {
-                    System.out.println("Ingrese la nueva fecha final de la tarea " + id + ".");
-                    tarea.setFechaFinal(new Date(sc.nextLine()));
+                    tarea.setFechaFinal(InputUtils.readLocalDate(sc, "Ingrese la nueva fecha de finalización de la tarea " + id + " (dd/mm/aaaa): "));
+                    System.out.println();
                 }
 
                 System.out.println("¿Desea modificar las observaciones de la tarea (s para confirmar)?");

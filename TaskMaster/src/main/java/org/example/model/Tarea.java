@@ -1,5 +1,6 @@
 package org.example.model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -8,8 +9,8 @@ public class Tarea implements Mostrable {
     private int idTarea;
     private String titulo;
     private String descripcion;
-    private Date fechaComienzo;
-    private Date fechaFinal;
+    private LocalDate fechaComienzo;
+    private LocalDate fechaFinal;
     private String observaciones;
 
     //Atributos de relación
@@ -17,7 +18,7 @@ public class Tarea implements Mostrable {
     private Categoria categoria;
     private Usuario usuario;
 
-    public Tarea(int idTarea, String titulo, String descripcion, Date fechaComienzo, Date fechaFinal, String observaciones, Estado estado, Categoria categoria, Usuario usuario) {
+    public Tarea(int idTarea, String titulo, String descripcion, LocalDate fechaComienzo, LocalDate fechaFinal, String observaciones, Estado estado, Categoria categoria, Usuario usuario) {
         this.idTarea = idTarea;
         this.titulo = titulo;
         this.descripcion = descripcion;
@@ -61,11 +62,11 @@ public class Tarea implements Mostrable {
         this.descripcion = descripcion;
     }
 
-    public void setFechaComienzo(Date fechaComienzo){
+    public void setFechaComienzo(LocalDate fechaComienzo){
         this.fechaComienzo = fechaComienzo;
     }
 
-    public void setFechaFinal(Date fechaFinal){
+    public void setFechaFinal(LocalDate fechaFinal){
         this.fechaFinal = fechaFinal;
     }
 
