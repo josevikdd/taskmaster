@@ -171,13 +171,9 @@ public class TaskMaster {
                 mostrarUsuarios();
                 System.out.println("Ingrese el ID del nuevo usuario de la tarea " + id + ".");
                 int idUsuario = sc.nextInt();
+                sc.nextLine();
                 if (buscarUsuario(idUsuario) != null){
-                    for (int i = 0; i > tarea.getUsuario().getTareas().size(); i++) {
-                        if (tarea.getUsuario().getTareas().get(i).getId() == id){
-                            tarea.getUsuario().getTareas().remove(i);
-                        }
-                    }
-
+                    tarea.getUsuario().getTareas().remove(tarea);
                     Usuario usuario = buscarUsuario(idUsuario);
                     tarea.setUsuario(usuario);
                     usuario.getTareas().add(tarea);
