@@ -85,6 +85,7 @@ public class TaskMaster {
         for (Usuario usuario : usuarios){
             usuario.mostrarDatos();
         }
+        System.out.println();
     }
 
     public static void crearTarea(){
@@ -133,6 +134,8 @@ public class TaskMaster {
                             Tarea tarea = new Tarea(id, titulo, descripcion, fechaComienzo, fechaFinal, observaciones, estado, categoria, usuario);
                             tareas.add(tarea);
                             usuario.getTareas().add(tarea);
+
+                            System.out.println("Tarea " + tarea.getId() + " - " + tarea.getTitulo() + " correctamente creada.");
                         }
                         else {
                             System.out.println("ID de la categoria no válido. Volviendo al menú principal.");
@@ -242,6 +245,8 @@ public class TaskMaster {
                     System.out.println("ID de categoría no válida. No se ha guardado el cambio.");
                 }
             }
+
+            System.out.println("Tarea con ID " + tarea.getId() + " correctamente actualizada.");
         }
         else {
             System.out.println("No existe una tarea con el ID " + id + ". Volviendo al menú principal.");
@@ -257,6 +262,8 @@ public class TaskMaster {
             Tarea tarea = buscarTarea(id);
             tarea.getUsuario().getTareas().remove(tarea);
             tareas.remove(tarea);
+
+            System.out.println("Tarea correctamente eliminada.");
         }
         else {
             System.out.println("El ID introducido no coincide con el ID de ninguna tarea actual. Volviendo al menú principal.");
@@ -278,7 +285,7 @@ public class TaskMaster {
         if (buscarTarea(id) != null){
             Tarea tarea = buscarTarea(id);
             tarea.setEstado(buscarEstado(3));
-            System.out.println("Tarea " + id + " marcada correctamente como completada.");
+            System.out.println("Tarea " + id + " - " + tarea.getTitulo() + " marcada correctamente como completada.");
         }
         else {
             System.out.println("No existe ninguna tarea con el ID " + id + ". Volviendo al menú principal.");
@@ -294,7 +301,7 @@ public class TaskMaster {
         sc.nextLine();
         if (buscarCategoria(id) != null){
             Categoria categoria = buscarCategoria(id);
-            System.out.println("===TAREAS DE LA CATEGORÍA " + id + "===");
+            System.out.println("===TAREAS DE LA CATEGORÍA " + id + " - " + categoria.getNombre() + "===");
             for (Tarea tarea : tareas){
                 if (tarea.getCategoria() == categoria){
                     tarea.mostrarDatos();
@@ -309,7 +316,8 @@ public class TaskMaster {
         int id = sc.nextInt();
 
         if (buscarUsuario(id) != null){
-            System.out.println("===TAREAS DEL USUARIO " + id + "===");
+            Usuario usuario = buscarUsuario(id);
+            System.out.println("===TAREAS DEL USUARIO " + id + " - " + usuario.getNombre() + "===");
             for (Tarea tarea : buscarUsuario(id).getTareas()){
                 tarea.mostrarDatos();
             }
