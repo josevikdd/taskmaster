@@ -29,15 +29,7 @@ public class Tarea implements Mostrable {
         this.categoria = categoria;
         this.usuario = usuario;
     }
-
-    public void editarTarea(){
-
-    }
-
-    public void completarTarea(){
-
-    }
-
+    
     public Usuario getUsuario() {
         return usuario;
     }
