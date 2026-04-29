@@ -23,6 +23,6 @@ public class Estado implements Mostrable{
 
     @Override
     public void mostrarDatos() {
-        System.out.println(idEstado + " -  " + nombre + " - " + descripcion);
+        System.out.println(idEstado + " - " + nombre + " - " + descripcion);
     }
 }

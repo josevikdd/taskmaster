@@ -37,6 +37,6 @@ public class Usuario implements Mostrable {
 
     @Override
     public void mostrarDatos() {
-        System.out.println(idUsuario + " -  " + nombre + " - " + email + " - " + contrasena);
+        System.out.println(idUsuario + " - " + nombre + " - " + email + " - " + contrasena);
     }
 }

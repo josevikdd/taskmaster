@@ -23,6 +23,6 @@ public class Categoria implements Mostrable {
 
     @Override
     public void mostrarDatos() {
-        System.out.println(idCategoria + " -  " + nombre + " - " + descripcion);
+        System.out.println(idCategoria + " - " + nombre + " - " + descripcion);
     }
 }

@@ -29,7 +29,7 @@ public class Tarea implements Mostrable {
         this.categoria = categoria;
         this.usuario = usuario;
     }
-    
+
     public Usuario getUsuario() {
         return usuario;
     }
@@ -80,8 +80,8 @@ public class Tarea implements Mostrable {
 
     @Override
     public void mostrarDatos() {
-        System.out.println(idTarea + " - " + titulo + " - " + descripcion +  " - " + fechaComienzo +  " - " + fechaFinal + " - " + observaciones + " - "
-                + estado.getNombre() + " - " + categoria.getNombre());
+        System.out.println(idTarea + " - " + titulo + " - " + descripcion +  " - " + fechaComienzo +  " - " + fechaFinal + " - " + observaciones + " - " +
+                estado.getNombre() + " - " + categoria.getNombre() + " --> Usuario: " + usuario.getId());
     }
 
 }
