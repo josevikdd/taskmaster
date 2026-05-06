@@ -1,4 +1,10 @@
-section {
+main {
+    display: flex;
+    gap: 30px;
+}
+
+main section {
+    flex: 1;
     background-color: white;
     padding: 15px;
     margin-bottom: 20px;
