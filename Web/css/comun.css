@@ -42,6 +42,10 @@ nav a:hover {
     text-decoration: underline;
 }
 
+.fixed {
+    position: fixed;
+}
+
 main {
     flex: 1;
     padding: 20px;
