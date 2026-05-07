@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>TaskMaster - Crear tarea</title>
+    <link rel="stylesheet" href="../../css/comun.css">
+    <link rel="stylesheet" href="../../css/creartarea.css">
+</head>
+
+<body>
+    <header class="fixed">
+        <h1>TaskMaster - Gestión de tareas</h1>
+        <nav>
+            <a href="../../index.html">Inicio</a>
+            <a href="../gestionusuarios/altausuario.html">Gestión de usuarios</a>
+            <a class="actual" href="">Gestión de tareas</a>
+            <a href="../contacto.html">Contacto</a>
+        </nav>
+        <nav>
+            <a class="actual" href="creartarea.html">Crear tarea</a>
+            <a href="editartarea.html">Editar tarea</a>
+            <a href="completartarea.html">Completar tarea</a>
+            <a href="eliminartarea.html">Eliminar tarea</a>
+            <a href="listartareas.html">Listar tareas</a>
+        </nav>
+    </header>
+    <main>
+        <form>
+            <h2>Crear tarea</h2>
+            <label>
+                ID del usuario: <br>
+                <input type="number" name="number" required>
+            </label>
+
+            <label>
+                ID de la tarea: <br>
+                <input type="number" name="number" required>
+            </label>
+
+            <label>
+                Nombre de la tarea: <br>
+                <input type="text" name="nombre" required>
+            </label>
+
+            <label>
+                Descripción: <br>
+                <input type="text" name="descripción">
+            </label>
+
+            <label>
+                Fecha de inicio: <br>
+                <input type="date" name="fechainicio" required>
+            </label>
+
+            <label>
+                Fecha de finalización: <br>
+                <input type="date" name="fechafinalizacion">
+            </label>
+
+            <label>
+                Estado de la tarea: <br>
+                <input type="text" name="estado">
+            </label>
+
+            <label>
+                Categoría de la tarea: <br>
+                <input type="text" name="categoria">
+            </label>
+
+            <button type="submit">Crear tarea</button>
+        </form>
+    </main>
+    <footer>
+        <p>José Vicente Sánchez Vargues - 1º DAM</p>
+    </footer>
+</body>
+</html>
