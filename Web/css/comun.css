@@ -6,18 +6,6 @@ html, body {
     height: 100%;
 }
 
-@media (min-width: 901px) {
-    main {
-        flex-direction: row;
-    }
-}
-
-@media (max-width: 900px) {
-    main {
-        flex-direction: column;
-    }
-}
-
 body {
     display: flex;
     flex-direction: column;

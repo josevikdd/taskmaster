@@ -3,16 +3,42 @@
 }
 
 main {
-    margin-top: 6.5%;
+    margin-top: 125px;
     display: flex;
     gap: 30px;
+    justify-content: center;
+    align-items: center;
 }
 
 main section {
     flex: 1;
+    min-width: 400px;
+    max-width: 500px;
+    min-height: 800px;
     background-color: white;
     padding: 15px;
     margin-bottom: 20px;
     border-radius: 5px;
     text-align: justify;
+}
+
+@media (min-width: 1401px) {
+    main {
+        flex-direction: row;
+        flex-wrap: nowrap;
+    }
+}
+
+@media (max-width: 1400px) and (min-width: 901px) {
+    main {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 900px) {
+    main {
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
 }
