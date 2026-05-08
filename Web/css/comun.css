@@ -34,11 +34,16 @@ nav {
 nav a {
     color: white;
     text-decoration: none;
-    margin-right: 15px;
+    margin-right: 20px;
+    display: inline-block;
 }
 
 nav a:hover {
-    text-decoration: underline;
+    -ms-transform: scale(1.2);
+	/* IE 9 */
+	-webkit-transform: scale(1.2);
+	/* Safari 3-8 */
+	transform: scale(1.2);
 }
 
 .fixed {
