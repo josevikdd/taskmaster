@@ -28,6 +28,12 @@
     <main>
         <section>
             <h2>Todas las tareas</h2>
+            <ul>
+                <li>Plegar la ropa.</li>
+                <li>Reto 5 - Proyecto intermodular.</li>
+                <li>Q14 - Bases de datos.</li>
+                <li>Hacer la comida.</li>
+            </ul>
         </section>
 
         <section>
@@ -36,6 +42,13 @@
                 <option value="1">DAM</option>
                 <option value="2">Tiempo libre</option>
             </select>
+            <br>
+            <ul id="listacategoria">
+                <li data-categoria="2">Plegar la ropa.</li>
+                <li data-categoria="1">Reto 5 - Proyecto intermodular.</li>
+                <li data-categoria="1">Q14 - Bases de datos.</li>
+                <li data-categoria="2">Hacer la comida.</li>
+            </ul>
         </section>
 
         <section>
@@ -67,6 +80,26 @@
                 tareasUsuario.forEach(tarea => {
 
                     if (tarea.dataset.usuario === usuarioSeleccionado) {
+                        tarea.style.display = "list-item";
+                    } else {
+                        tarea.style.display = "none";
+                    }
+
+                });
+
+            });
+        </script>
+        <script>
+            const filtroCategoria = document.getElementById("categoria");
+            const tareasCategoria = document.querySelectorAll("#listacategoria li");
+
+            filtroCategoria.addEventListener("change", function () {
+
+                const categoriaSeleccionada = this.value;
+
+                tareasCategoria.forEach(tarea => {
+
+                    if (tarea.dataset.categoria === categoriaSeleccionada) {
                         tarea.style.display = "list-item";
                     } else {
                         tarea.style.display = "none";
