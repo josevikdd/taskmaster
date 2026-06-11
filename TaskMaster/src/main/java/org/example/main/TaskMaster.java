@@ -118,7 +118,7 @@ public class TaskMaster {
 
                     LocalDate fechaComienzo = InputUtils.readLocalDate(sc, "Ingrese la fecha de comienzo de la tarea (dd/mm/aaaa): ");
 
-                    LocalDate fechaFinal = InputUtils.readLocalDate(sc, "Ingrese la fecha de finalización de la tarea (dd/mm/aaaa): ");
+                    LocalDate fechaFinal = InputUtils.readLocalDate(sc, "Ingrese la fecha de finalización de la tarea (dd/mm/aaaa): "); //aquigg añadir que la fecha sea despues
 
                     System.out.println("Añada observaciones a la tarea: ");
                     String observaciones = sc.nextLine();
