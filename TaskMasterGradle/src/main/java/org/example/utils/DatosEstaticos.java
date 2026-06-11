@@ -1,5 +1,6 @@
 package org.example.utils;
 
+import org.example.main.TaskMaster;
 import org.example.model.Categoria;
 import org.example.model.Estado;
 import org.example.model.Tarea;
