@@ -75,11 +75,15 @@ public class TaskMaster {
             System.out.println("Ingrese el contraseña del usuario: ");
             String contrasena = sc.nextLine();
 
-            Usuario usuario = new Usuario(id, nombre, email, contrasena);
-            usuarios.add(usuario);
+            if (campoVacio(nombre) || campoVacio(email) || campoVacio(contrasena)){
+                System.out.println("Por favor, rellene los campos obligatorios para dar de alta a un usuario correctamente.");
+            } else {
+                Usuario usuario = new Usuario(id, nombre, email, contrasena);
+                usuarios.add(usuario);
 
-            System.out.println("Usuario " + usuario.getId() + " - " + usuario.getNombre() + " dado de alta correctamente.");
-            System.out.println();
+                System.out.println("Usuario " + usuario.getId() + " - " + usuario.getNombre() + " dado de alta correctamente.");
+                System.out.println();
+            }
         }
         else {
             System.out.println("Ya existe un usuario con el ID " + id + ". Volviendo al menú principal.");
@@ -426,6 +430,13 @@ public class TaskMaster {
             }
         }
         return null;
+    }
+
+    public static boolean campoVacio(String campo){
+        if  (campo.equals("")){
+            return true;
+        }
+        return false;
     }
 
     public static List getCategorias(){
