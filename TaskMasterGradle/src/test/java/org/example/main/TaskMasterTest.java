@@ -36,12 +36,17 @@ class TaskMasterTest {
         Usuario usuario = new Usuario(200, "Juan", "juan@gmail.com", "1234");
         Categoria categoria = new Categoria(200, "Trabajo", "");
         Estado estado = new Estado(200, "Pendiente", "");
+        Tarea tarea = null;
 
-        Tarea tarea = new Tarea(1, "Estudiar", "JUnit", LocalDate.of(2026, 6, 11),
-                LocalDate.of(2026, 6, 18), "", estado, categoria, usuario);
+        LocalDate comienzo = LocalDate.of(2026, 6, 11);
+        LocalDate finalizacion = LocalDate.of(2026, 6, 7);
+        //https://www.geeksforgeeks.org/java/localdate-isbefore-method-in-java-with-examples/
+        if (comienzo.isBefore(finalizacion) || comienzo.isEqual(finalizacion)) {
+            tarea = new Tarea(1, "Estudiar", "JUnit", comienzo,
+                    finalizacion, "", estado, categoria, usuario);
+        }
 
-        assertNotNull(tarea);
-        assertEquals(null, tarea);
+        assertNull(tarea);
     }
 
     @Test

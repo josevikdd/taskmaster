@@ -125,41 +125,46 @@ public class TaskMaster {
 
                     LocalDate fechaComienzo = InputUtils.readLocalDate(sc, "Ingrese la fecha de comienzo de la tarea (dd/mm/aaaa): ");
 
-                    LocalDate fechaFinal = InputUtils.readLocalDate(sc, "Ingrese la fecha de finalización de la tarea (dd/mm/aaaa): "); //aquigg añadir que la fecha sea despues
+                    LocalDate fechaFinal = InputUtils.readLocalDate(sc, "Ingrese la fecha de finalización de la tarea (dd/mm/aaaa): ");
 
-                    System.out.println("Añada observaciones a la tarea: ");
-                    String observaciones = sc.nextLine();
+                    if (fechaComienzo.isBefore(fechaFinal)){
+                        System.out.println("Añada observaciones a la tarea: ");
+                        String observaciones = sc.nextLine();
 
-                    System.out.println("Ingrese el estado actual de la tarea (1 - 4):");
-                    for (Estado estado : estados){
-                        estado.mostrarDatos();
-                    }
-                    int idEstado = sc.nextInt();
-                    if (buscarEstado(idEstado) != null){
-                        Estado estado = buscarEstado(idEstado);
-
-                        System.out.println("Ingrese la categoría de la tarea (1 - 2): ");
-                        for (Categoria categoria : categorias){
-                            categoria.mostrarDatos();
+                        System.out.println("Ingrese el estado actual de la tarea (1 - 4):");
+                        for (Estado estado : estados){
+                            estado.mostrarDatos();
                         }
-                        int idCategoria = sc.nextInt();
-                        if (buscarCategoria(idCategoria) != null){
-                            Categoria categoria = buscarCategoria(idCategoria);
+                        int idEstado = sc.nextInt();
+                        if (buscarEstado(idEstado) != null){
+                            Estado estado = buscarEstado(idEstado);
 
-                            Tarea tarea = new Tarea(id, titulo, descripcion, fechaComienzo, fechaFinal, observaciones, estado, categoria, usuario);
-                            tareas.add(tarea);
-                            usuario.getTareas().add(tarea);
+                            System.out.println("Ingrese la categoría de la tarea (1 - 2): ");
+                            for (Categoria categoria : categorias){
+                                categoria.mostrarDatos();
+                            }
+                            int idCategoria = sc.nextInt();
+                            if (buscarCategoria(idCategoria) != null){
+                                Categoria categoria = buscarCategoria(idCategoria);
 
-                            System.out.println("Tarea " + tarea.getId() + " - " + tarea.getTitulo() + " correctamente creada.");
+                                Tarea tarea = new Tarea(id, titulo, descripcion, fechaComienzo, fechaFinal, observaciones, estado, categoria, usuario);
+                                tareas.add(tarea);
+                                usuario.getTareas().add(tarea);
+
+                                System.out.println("Tarea " + tarea.getId() + " - " + tarea.getTitulo() + " correctamente creada.");
+                            }
+                            else {
+                                System.out.println("ID de la categoria no válido. Volviendo al menú principal.");
+                                System.out.println();
+                            }
                         }
                         else {
-                            System.out.println("ID de la categoria no válido. Volviendo al menú principal.");
+                            System.out.println("ID del estado no válido. Volviendo al menú principal.");
                             System.out.println();
                         }
                     }
                     else {
-                        System.out.println("ID del estado no válido. Volviendo al menú principal.");
-                        System.out.println();
+                        System.out.println("La fecha de finalización no puede ser anterior a la fecha de inicio de la tarea. Volviendo al menú principal.");
                     }
                 }
                 else {
