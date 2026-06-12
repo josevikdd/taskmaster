@@ -230,8 +230,16 @@ public class TaskMaster {
 
                 System.out.println("¿Desea modificar la fecha final de la tarea (s para confirmar)?");
                 if (sc.nextLine().equals("s")) {
-                    tarea.setFechaFinal(InputUtils.readLocalDate(sc, "Ingrese la nueva fecha de finalización de la tarea " + id + " (dd/mm/aaaa): "));
-                    System.out.println();
+                    LocalDate fechaFinal = InputUtils.readLocalDate(sc, "Ingrese la nueva fecha de finalización de la tarea " + id + " (dd/mm/aaaa): ");
+                    if (tarea.getFechaComienzo().isBefore(fechaFinal)) {
+                        tarea.setFechaFinal(fechaFinal);
+                        System.out.println();
+                    }
+                    else {
+                        System.out.println("La fecha de finalización no puede ser anterior a la fecha de comienzo de la tarea." +
+                                "Se ajustará con un día de duración.");
+                        tarea.setFechaFinal(tarea.getFechaComienzo().plusDays(1));
+                    }
                 }
 
                 System.out.println("¿Desea modificar las observaciones de la tarea (s para confirmar)?");

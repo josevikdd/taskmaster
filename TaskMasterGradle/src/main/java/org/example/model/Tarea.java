@@ -44,6 +44,10 @@ public class Tarea implements Mostrable {
         return categoria;
     }
 
+    public LocalDate getFechaComienzo() {
+        return fechaComienzo;
+    }
+
     public void setTitulo(String titulo){
         this.titulo = titulo;
     }
