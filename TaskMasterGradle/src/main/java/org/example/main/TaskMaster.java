@@ -106,13 +106,12 @@ public class TaskMaster {
         }
     }
 
-    public static void crearTarea(){
+    public static void crearTarea(){ //aquigg
         if (!usuarios.isEmpty()){
             mostrarUsuarios();
             System.out.println("Ingrese el ID del usuario al que va a asignar la tarea: ");
-            int idUsuario = sc.nextInt();
-            if (buscarUsuario(idUsuario) != null){
-                Usuario usuario = buscarUsuario(idUsuario);
+            Usuario usuario = buscarUsuario(sc.nextInt());
+            if (usuario != null){
 
                 System.out.println("Ingrese el ID del tarea: ");
                 int id = sc.nextInt();
@@ -198,11 +197,10 @@ public class TaskMaster {
                 if (sc.nextLine().equals("s")) {
                     mostrarUsuarios();
                     System.out.println("Ingrese el ID del nuevo usuario de la tarea " + id + ".");
-                    int idUsuario = sc.nextInt();
+                    Usuario usuario = buscarUsuario(sc.nextInt());
                     sc.nextLine();
-                    if (buscarUsuario(idUsuario) != null){
+                    if (usuario != null){
                         tarea.getUsuario().getTareas().remove(tarea);
-                        Usuario usuario = buscarUsuario(idUsuario);
                         tarea.setUsuario(usuario);
                         usuario.getTareas().add(tarea);
                     }
@@ -255,9 +253,10 @@ public class TaskMaster {
                         estado.mostrarDatos();
                     }
                     System.out.println("Ingrese el nuevo estado de la tarea " + id + "(1 - 4).");
-                    int idEstado = sc.nextInt();
-                    if (buscarEstado(idEstado) != null){
-                        tarea.setEstado(buscarEstado(idEstado));
+                    Estado estado = buscarEstado(sc.nextInt());
+                    sc.nextLine();
+                    if (estado != null){
+                        tarea.setEstado(estado);
                     }
                     else {
                         System.out.println("ID de estado no válido. No se ha guardado el cambio.");
@@ -270,9 +269,10 @@ public class TaskMaster {
                         categoria.mostrarDatos();
                     }
                     System.out.println("Ingrese la nueva categoría de la tarea " + id + "(1 - 2).");
-                    int idCategoria = sc.nextInt();
-                    if (buscarCategoria(idCategoria) != null){
-                        tarea.setCategoria(buscarCategoria(idCategoria));
+                    Categoria categoria = buscarCategoria(sc.nextInt());
+                    sc.nextLine();
+                    if (categoria != null){
+                        tarea.setCategoria(categoria);
                     }
                     else {
                         System.out.println("ID de categoría no válida. No se ha guardado el cambio.");
@@ -331,16 +331,14 @@ public class TaskMaster {
         if (!tareas.isEmpty()){
             listarTareas();
             System.out.println("Introduzca el ID de la tarea que desea completar.");
-            int id = sc.nextInt();
-            sc.nextLine();
-            if (buscarTarea(id) != null){
-                Tarea tarea = buscarTarea(id);
+            Tarea tarea = buscarTarea(sc.nextInt());
+            if (tarea != null){
                 tarea.setEstado(ESTADO_COMPLETADA);
-                System.out.println("Tarea " + id + " - " + tarea.getTitulo() + " marcada correctamente como completada.");
+                System.out.println("Tarea " + tarea.getId() + " - " + tarea.getTitulo() + " marcada correctamente como completada.");
                 System.out.println();
             }
             else {
-                System.out.println("No existe ninguna tarea con el ID " + id + ". Volviendo al menú principal.");
+                System.out.println("No existe ninguna tarea con el ID ingresado. Volviendo al menú principal.");
                 System.out.println();
             }
         }
@@ -356,11 +354,10 @@ public class TaskMaster {
                 categoria.mostrarDatos();
             }
             System.out.println("Ingrese el ID de la categoría de la cual quiere listar las tareas: ");
-            int id = sc.nextInt();
+            Categoria categoria = buscarCategoria(sc.nextInt());
             sc.nextLine();
-            if (buscarCategoria(id) != null){
-                Categoria categoria = buscarCategoria(id);
-                System.out.println("===TAREAS DE LA CATEGORÍA " + id + " - " + categoria.getNombre() + "===");
+            if (categoria != null){
+                System.out.println("===TAREAS DE LA CATEGORÍA " + categoria.getId() + " - " + categoria.getNombre() + "===");
                 boolean hayDatos = false;
                 for (Tarea tarea : tareas){
                     if (tarea.getCategoria() == categoria){
@@ -384,11 +381,11 @@ public class TaskMaster {
         if (!usuarios.isEmpty()){
             mostrarUsuarios();
             System.out.println("Ingrese el ID del usuario del que quiere listar las tareas: ");
-            int id = sc.nextInt();
+            Usuario usuario =  buscarUsuario(sc.nextInt());
+            sc.nextLine();
 
-            if (buscarUsuario(id) != null){
-                Usuario usuario = buscarUsuario(id);
-                System.out.println("===TAREAS DEL USUARIO " + id + " - " + usuario.getNombre() + "===");
+            if (usuario != null){
+                System.out.println("===TAREAS DEL USUARIO " + usuario.getId() + " - " + usuario.getNombre() + "===");
                 if (!usuario.getTareas().isEmpty()){
                     for (Tarea tarea : usuario.getTareas()){
                         tarea.mostrarDatos();
