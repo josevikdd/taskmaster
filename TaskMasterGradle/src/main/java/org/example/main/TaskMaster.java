@@ -12,6 +12,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Clase principal de la aplicación TaskMaster.
+ * Gestiona las tareas, sus usuarios, sus estados ysu categorías.
+ *
+ * @author José Vicente Sánchez Vargues
+ * @version 1.0
+ */
+
 public class TaskMaster {
 
     private static final Scanner sc = new Scanner(System.in);
@@ -61,6 +69,11 @@ public class TaskMaster {
         System.out.println("0.- Salir.");
     }
 
+    /**
+     * Da de alta un nuevo usuario en el sistema.
+     * Pide los datos necesarios por consola y comprueba
+     * que el ID no exista.
+     */
     public static void altaUsuario(){
         System.out.println("Ingrese el ID del usuario: ");
         int id = sc.nextInt();
@@ -92,6 +105,9 @@ public class TaskMaster {
         }
     }
 
+    /**
+     * Muestra todos los usuarios registrados.
+     */
     public static void mostrarUsuarios(){
         if (!usuarios.isEmpty()){
             System.out.println("===LISTA DE USUARIOS===");
@@ -106,7 +122,7 @@ public class TaskMaster {
         }
     }
 
-    public static void crearTarea(){ //aquigg
+    public static void crearTarea(){
         if (!usuarios.isEmpty()){
             mostrarUsuarios();
             System.out.println("Ingrese el ID del usuario al que va a asignar la tarea: ");
@@ -294,6 +310,9 @@ public class TaskMaster {
 
     }
 
+    /**
+     * Elimina una tarea existente del programa.
+     */
     public static void eliminarTarea(){
         if (!tareas.isEmpty()){
             listarTareas();
@@ -327,6 +346,9 @@ public class TaskMaster {
         System.out.println();
     }
 
+    /**
+     * Marca una tarea como completada.
+     */
     public static void completarTarea(){
         if (!tareas.isEmpty()){
             listarTareas();
@@ -348,6 +370,9 @@ public class TaskMaster {
         }
     }
 
+    /**
+     * Lista todas las tareas de una categoría.
+     */
     public static void listarTareasCategoria(){
         if (!tareas.isEmpty()){
             for (Categoria categoria : categorias){
@@ -407,6 +432,12 @@ public class TaskMaster {
         }
     }
 
+    /**
+     * Busca un usuario a partir de su identificador.
+     *
+     * @param id identificador del usuario
+     * @return el usuario encontrado o null si no existe
+     */
     public static Usuario buscarUsuario(int id){
         for (Usuario usuario : usuarios){
             if (usuario.getId() == id){
@@ -416,6 +447,12 @@ public class TaskMaster {
         return null;
     }
 
+    /**
+     * Busca un estado por su identificador.
+     *
+     * @param id identificador del estado
+     * @return el estado encontrado o null si no existe
+     */
     public static Estado buscarEstado(int id){
         for (Estado estado : estados){
             if (estado.getId() == id){
@@ -425,6 +462,12 @@ public class TaskMaster {
         return null;
     }
 
+    /**
+     * Busca una categoría por su identificador.
+     *
+     * @param id identificador de la categoría
+     * @return la categoría encontrada o null si no existe
+     */
     public static Categoria buscarCategoria(int id){
         for (Categoria categoria : categorias){
             if (categoria.getId() == id){
@@ -434,6 +477,12 @@ public class TaskMaster {
         return null;
     }
 
+    /**
+     * Busca una tarea por su identificador.
+     *
+     * @param id identificador de la tarea
+     * @return la tarea encontrada o null si no existe
+     */
     public static Tarea buscarTarea(int id){
         for (Tarea tarea : tareas){
             if (tarea.getId() == id){
@@ -443,6 +492,12 @@ public class TaskMaster {
         return null;
     }
 
+    /**
+     * Comprueba si un String esta vacío.
+     *
+     * @param campo texto a comprobar
+     * @return true si el texto está vacío, false en caso contrario
+     */
     public static boolean campoVacio(String campo){
         if  (campo.equals("")){
             return true;

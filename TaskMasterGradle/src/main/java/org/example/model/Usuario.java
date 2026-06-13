@@ -3,6 +3,13 @@ package org.example.model;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Representa un usuario registrado en el sistema TaskMaster.
+ * Cada usuario puede tener asignadas varias tareas.
+ *
+ * @author José Vicente Sánchez Vargues
+ * @version 1.0
+ */
 public class Usuario implements Mostrable {
     //Atributos de la clase Usuario
     private int idUsuario;

@@ -2,6 +2,14 @@ package org.example.model;
 
 import java.time.LocalDate;
 
+
+/**
+ * Representa una tarea asignada a un usuario dentro del sistema TaskMaster.
+ * Cada tarea posee un estado, una categoría y un conjunto de datos descriptivos.
+ *
+ * @author José Vicente Sánchez Vargues
+ * @version 1.0
+ */
 public class Tarea implements Mostrable {
     //Atributos de la clase Tarea
     private int idTarea;
@@ -16,6 +24,19 @@ public class Tarea implements Mostrable {
     private Categoria categoria;
     private Usuario usuario;
 
+    /**
+     * Constructor de la clase Tarea.
+     *
+     * @param idTarea identificador único de la tarea
+     * @param titulo título de la tarea
+     * @param descripcion descripción de la tarea
+     * @param fechaComienzo fecha de inicio de la tarea
+     * @param fechaFinal fecha de finalización de la tarea
+     * @param observaciones observaciones adicionales
+     * @param estado estado actual de la tarea
+     * @param categoria categoría asociada a la tarea
+     * @param usuario usuario al que pertenece la tarea
+     */
     public Tarea(int idTarea, String titulo, String descripcion, LocalDate fechaComienzo, LocalDate fechaFinal, String observaciones, Estado estado, Categoria categoria, Usuario usuario) {
         this.idTarea = idTarea;
         this.titulo = titulo;
