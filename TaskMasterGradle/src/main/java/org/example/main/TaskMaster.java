@@ -19,6 +19,7 @@ public class TaskMaster {
     private static final List<Estado> estados = new ArrayList<>();
     private static final List<Tarea> tareas = new ArrayList<>();
     private static final List<Usuario> usuarios = new ArrayList<>();
+    private static final Estado ESTADO_COMPLETADA = buscarEstado(3);
 
     //Cargamos los datos estáticos para Categoria y Estado.
     private static final DatosEstaticos de = new DatosEstaticos();
@@ -334,7 +335,7 @@ public class TaskMaster {
             sc.nextLine();
             if (buscarTarea(id) != null){
                 Tarea tarea = buscarTarea(id);
-                tarea.setEstado(buscarEstado(3));
+                tarea.setEstado(ESTADO_COMPLETADA);
                 System.out.println("Tarea " + id + " - " + tarea.getTitulo() + " marcada correctamente como completada.");
                 System.out.println();
             }
